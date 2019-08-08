@@ -2,12 +2,13 @@ import random
 from selenium import webdriver
 image_count = 5
 juso = 'https://www.pinterest.co.kr/starseed13/%EB%AA%A8%EC%97%90/'
-#rehu
+
 
 driver = webdriver.Chrome('chromedriver')
 driver.get(juso)
 images = driver.find_elements_by_tag_name('img')
 len_img = len(images)
+               
 
 img_arr = []
 for image in images:
@@ -15,21 +16,18 @@ for image in images:
 del images[0]
 
     
-three_images = [random.randint(0,len_img)]
-while len(three_images)!=image_count:
+num_images = [random.randint(0,len_img)]
+while len(num_images)!=image_count:
     rand=random.randint(0,len_img)
-    for i in(range(len(three_images))):        
-        if rand == three_images[i]:
+    for i in(range(len(num_images))):        
+        if rand == num_images[i]:
             break
-        if i == len(three_images)-1:
-            three_images+=[rand]
-print(three_images)
-
-for i in range(image_count):
-    three_images[i] = img_arr[i]
+        if i == len(num_images)-1:
+            num_images+=[rand]
 
 
-print(three_images)
+for i in num_images:
+    images[i].screenshot((str(i)+"images")+".png")
 
 
 
