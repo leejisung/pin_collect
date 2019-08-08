@@ -3,27 +3,13 @@ import time
 import random
 from selenium import webdriver
 image_count = 5
-#juso = 'https://www.pinterest.co.kr/mornthadtartee/%E0%B8%AD%E0%B8%B0%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B0/'
+page_down = 5
 juso = 'https://www.pinterest.co.kr/starseed13/%EB%AA%A8%EC%97%90/'
 
 driver = webdriver.Chrome('chromedriver')
 driver.get(juso)
 
-title_ = driver.title
-for i in range(len(title_)):
-    if title_[i]== '이' and title_[i+1]== '미' and title_[i+2]== '지':
-        number_start = i+4
-        break
-pin_number = ''
-
-for i in range(number_start, len(title_)):
-    if title_[i]!= '개':
-        pin_number+=title_[i]
-    else:
-        break
-pin_number = int(pin_number)
-
-for i in range(5):
+for i in range(page_down):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(1)
 
