@@ -1,3 +1,4 @@
+import urllib.request
 import random
 from selenium import webdriver
 image_count = 5
@@ -27,7 +28,7 @@ while len(num_images)!=image_count:
 
 
 for i in num_images:
-    images[i].screenshot((str(i)+"images")+".png")
+    urllib.request.urlretrieve(img_arr[i], "img"+str(i)+".png")
 
 
 
