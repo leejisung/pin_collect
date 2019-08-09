@@ -1,10 +1,12 @@
 import urllib.request
 import time
 import random
+import pandas as pd
 from selenium import webdriver
 image_count = 5
 page_down = 5
-juso = 'https://www.pinterest.co.kr/starseed13/%EB%AA%A8%EC%97%90/'
+data = pd.read_csv('data.csv', sep=',')
+juso = data.site[0]
 
 driver = webdriver.Chrome('chromedriver')
 driver.get(juso)
@@ -34,9 +36,4 @@ while len(num_images)!=image_count:
 
 
 for i in num_images:
-    urllib.request.urlretrieve(img_arr[i], "img"+str(i)+".png")
-
-
-
-
-
+    urllib.request.urlretrieve(img_arr[i], data.local[0]+"\\"+"img"+str(i)+".png")

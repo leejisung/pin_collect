@@ -14,6 +14,8 @@ def click():
     global data
     data.site[0] = juso
     data.local[0] = gr
+
+    data.to_csv("data.csv")
  
 lbl = Label(root, text="주소")
 lbl.grid(row=0, column=0)
