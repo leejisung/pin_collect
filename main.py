@@ -3,12 +3,18 @@ import time
 import random
 import pandas as pd
 from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('window-size=1920x1080')
+options.add_argument("disable-gpu")
+
 image_count = 5
 page_down = 5
 data = pd.read_csv('data.csv', sep=',')
 juso = data.site[0]
 
-driver = webdriver.Chrome('chromedriver')
+driver = webdriver.Chrome('chromedriver', chrome_options=options)
 driver.get(juso)
 
 for i in range(page_down):
@@ -37,3 +43,5 @@ while len(num_images)!=image_count:
 
 for i in num_images:
     urllib.request.urlretrieve(img_arr[i], data.local[0]+"\\"+"img"+str(i)+".png")
+
+driver.quit()
