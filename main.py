@@ -3,6 +3,9 @@ import time
 import random
 import pandas as pd
 from selenium import webdriver
+import os
+import shutil
+
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -13,6 +16,14 @@ image_count = 5
 page_down = 5
 data = pd.read_csv('data.csv', sep=',')
 juso = data.site[0]
+
+
+if not os.path.isdir(data.local[0]):
+    os.mkdir(data.local[0])
+else:
+    shutil.rmtree(data.local[0]+"\\")
+    os.mkdir(data.local[0])
+
 
 driver = webdriver.Chrome('chromedriver', chrome_options=options)
 driver.get(juso)
